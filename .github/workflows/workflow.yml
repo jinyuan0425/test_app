@@ -38,9 +38,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install
+          cache: 'yarn'
+      - name: Install JavaScript Dependencies
+        run: yarn install
       - name: Run tests
         run: bundler exec rspec .
       - name: Run brakeman
