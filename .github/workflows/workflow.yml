@@ -34,9 +34,13 @@ jobs:
         run: |
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test
-      - uses: borales/actions-yarn@v3.0.0
+      - name: Set up Node.js 16
+        uses: actions/setup-node@v3
         with:
-          cmd: install
+          node-version: 16
+          cache: 'yarn'
+      - name: Install JavaScript Dependencies
+        run: yarn install
       - name: Run tests
         run: bundler exec rspec .
       - name: Run brakeman
